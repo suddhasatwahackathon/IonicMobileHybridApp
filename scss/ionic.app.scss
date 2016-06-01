@@ -15,6 +15,7 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 $white:                             #fff;
+$grey:                              #F1F1F1;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
@@ -42,6 +43,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .login-wrapper{
 	width:100%;
     background:url(../img/loginbg.jpg);
+    //background:$grey;
 	height:100%;
 	color:$white;
 	margin-top:45px;
@@ -50,10 +52,18 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		background:none;
 	}
 	h3{
-		padding: 20px 0px
+		padding: 20px 0px;
 		color:$white;
 		text-align:center
 	}
+}
+
+.tab-nav{
+	background:#062657;
+	color:#fff;
+}
+icon{
+	color:$white;
 }
 
 
