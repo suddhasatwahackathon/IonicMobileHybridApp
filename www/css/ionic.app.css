@@ -7,7 +7,7 @@ For example, you might change some of the default colors:
 
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
-$positive:                        #387ef5 !default;
+$positive:                        #6792D1 !default;
 $calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
 $energized:                       #ffc900 !default;
@@ -9820,7 +9820,8 @@ a.button {
   color: #fff; }
   .slider .slider-slide {
     padding-top: 80px;
-    background: url(../img/bg.jpg) no-repeat;
+    background: url(../img/loginbg.jpg) no-repeat;
+    background-size: cover;
     text-align: center;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 300; }
@@ -9829,10 +9830,11 @@ a.button {
 
 .login-wrapper {
   width: 100%;
-  background: url(../img/loginbg.jpg);
   height: 100%;
-  color: #fff;
-  margin-top: 45px; }
+  background: url(../img/loginbg.jpg) no-repeat fixed top center;
+  background-size: cover;
+  opacity: 0.8;
+  color: #fff; }
   .login-wrapper input {
     color: #fff;
     background: none; }
@@ -9840,6 +9842,10 @@ a.button {
     padding: 20px 0px;
     color: #fff;
     text-align: center; }
+  .login-wrapper a {
+    color: #11c1f3;
+    font-size: 18px;
+    cursor: pointer; }
 
 .tab-nav {
   background: #062657;
