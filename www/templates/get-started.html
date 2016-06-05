@@ -1,20 +1,20 @@
 <ion-view view-title="Intro">
         <ion-nav-buttons side="left">
-          <button class="button button-positive button-clear no-animation"
+          <button class="button button-light button-clear no-animation link-started"
                   ng-click="startApp()" ng-show="!slideIndex">
             Skip Intro
           </button>
-          <button class="button button-positive button-clear no-animation"
+          <button class="button button-light button-clear no-animation link-started"
                   ng-click="previous()" ng-show="slideIndex > 0">
             Previous Slide
           </button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right"> 
-          <button class="button button-positive button-clear no-animation"
+          <button class="button button-light button-clear no-animation link-started"
                   ng-click="next()" ng-show="slideIndex != 2">
             Next
           </button>
-          <button class="button button-positive button-clear no-animation"
+          <button class="button button-light button-clear no-animation link-started"
                   ng-click="startApp()" ng-show="slideIndex == 2">
             Start using MyApp
           </button>
@@ -23,32 +23,38 @@
           <ion-slide>
             <h3>Welcome to lets venture</h3>
             <div id="logo">
-              <img src="http://code.ionicframework.com/assets/img/app_icon.png">
+              <img src="img/heading/image.jpg">
             </div>
             <p>
-              We've worked super hard to make you happy.
+             Get unlimited cartoon jokes
             </p>
             <p>
               But if you are angry, too bad.
             </p>
           </ion-slide>
           <ion-slide>
-            <h3>Using Awesome</h3>
-            
-            <div id="list">
-              <h5>Just three steps:</h5>
-              <ol>
-                <li>Be awesome</li>
-                <li>Stay awesome</li>
-                <li>There is no step 3</li>
-              </ol>
+            <h3>OMG</h3>
+            <div id="logo">
+              <img src="img/heading/nonVeg.jpg">
             </div>
+            <p>
+             Get unlimited non veg jokes
+            </p>
+            <p>
+              But if you are angry, too bad.
+            </p>            
           </ion-slide>
           <ion-slide>
-            <h3>Any questions?</h3>
+           <div id="logo">
+              <h3>LOL</h3>           
+              <img src="img/heading/regional.jpg">
+            </div>
             <p>
-              Too bad!
+             Get unlimited regional jokes
             </p>
+            <p>
+              But if you are angry, too bad.
+            </p>  
           </ion-slide>
         </ion-slide-box>
       </ion-view>

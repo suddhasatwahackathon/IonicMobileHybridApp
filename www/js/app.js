@@ -5,9 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$cordovaSplashscreen, $timeout, $rootScope, $ionicLoading, $ionicHistory) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -22,6 +22,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+      $ionicLoading.hide();
+      if(toState.name!=='jokes-detail'){
+        $ionicLoading.show({
+          templateUrl: 'templates/loading.html',
+          noBackdrop: true
+        });        
+      }   
+
+    });
+    $rootScope.goBack = function(){
+      $ionicHistory.goBack();
+      $ionicLoading.hide();
+    };
+     $ionicPlatform.onHardwareBackButton(function() {
+      $rootScope.goBack();
+     });
   });
 })
 
@@ -56,18 +73,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
   .state('register', {
     url: '/register',
-    templateUrl: 'templates/signup.html'   
+    templateUrl: 'templates/signup.html',
+    controller:"registerCtrl"           
   })
     .state('forgot-password', {
     url: '/forgot-password',
-    templateUrl: 'templates/forgot-password.html'
+    templateUrl: 'templates/forgot-password.html',
+    controller:"forgotCtrl" 
 
   })
   .state('tab.dash', {
     url: '/dash',
     views: {
       'tab-dash': {
-        templateUrl: 'templates/tab-dash.html'
+        templateUrl: 'templates/tab-dash.html',
+        controller:'DashCtrl'
       }
     }
   })
@@ -77,11 +97,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       templateUrl: 'templates/jokes.html',
       controller: 'ChatsCtrl'
   })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('jokes-detail', {
+      url: '/jokes-detail/:chatId',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
+        '': {
+          templateUrl: 'templates/jokes-detail.html',
           controller: 'ChatDetailCtrl'
         }
       }

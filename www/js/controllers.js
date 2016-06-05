@@ -19,36 +19,101 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('loginCtrl', function($scope, $state) {
+.controller('loginCtrl', function($scope, $state,$ionicLoading, $timeout) {
+  $timeout(function(){
+    $ionicLoading.hide().then(function(){
+      });
+  },500)
   $scope.login = function() {
-    console.log("login...");
-    $state.go('tab.dash');
+    $state.go('tab.dash')
   };
 })
 
+.controller('registerCtrl', function($scope, $state,$ionicLoading, $timeout) {
+  $timeout(function(){
+    $ionicLoading.hide().then(function(){
+      });
+  },500)
+})
+.controller('forgotCtrl', function($scope, $state,$ionicLoading, $timeout) {
+  $timeout(function(){
+    $ionicLoading.hide().then(function(){
+      });
+  },500)
+})
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope,$timeout,$ionicLoading) {
+  $timeout(function(){
+    $ionicLoading.hide().then(function(){
+      });
+  },500)
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+})
 
+.controller('ChatsCtrl', function($scope, Chats, $ionicLoading, $timeout) {
+
+  $timeout(function(){
+    $ionicLoading.hide().then(function(){
+      });
+  },500)  
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
     Chats.remove(chat);
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+.controller('ChatDetailCtrl', function($scope, $stateParams, Chats,$ionicLoading, $timeout, $ionicActionSheet, $cordovaSocialSharing) {
+   $scope.like=true;
+    $scope.unlike=false;
+  $timeout(function(){
+    $ionicLoading.hide().then(function(){
+      });
+  },500)
   $scope.chat = Chats.get($stateParams.chatId);
+  $scope.chat.len = Chats.len();
+
+  $scope.like = function(){
+    $scope.like=false;
+    $scope.unlike=true;
+  }
+  $scope.unlike = function(){
+    $scope.like=true;
+    $scope.unlike=false;
+  }
+   $scope.shareAnywhere = function(text) {
+    console.log($cordovaSocialSharing);
+      $cordovaSocialSharing.share(text, "This is your subject", "www/imagefile.png", "https://www.slipbeep.com");
+    }
+    $scope.shareViaTwitter = function(message, image, link) {
+        $cordovaSocialSharing.canShareVia("twitter", message, image, link).then(function(result) {
+            $cordovaSocialSharing.shareViaTwitter(message, image, link);
+        }, function(error) {
+            alert("Cannot share on Twitter");
+        });
+    } 
+    $scope.shareViaFacebook = function(message, image, link) {
+        $cordovaSocialSharing.canShareVia("com.facebook.katana", message, image, link).then(function(result) {
+            $cordovaSocialSharing.shareViaFacebook(message, image, link);
+        }, function(error) {
+            alert("Cannot share on facebook");
+        });
+    }     
+    $scope.shareViaWhatsApp = function(message, image, link) {
+      alert("fb");
+        $cordovaSocialSharing.canShareVia("whatsapp", message, image, link).then(function(result) {
+            alert("fb  inner");
+            $cordovaSocialSharing.shareViaFacebook(message, image, link);
+        }, function(error) {
+            alert("Cannot share on facebook");
+        });
+    } 
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', function($scope, $ionicLoading, $timeout) {
+    $timeout(function(){
+    $ionicLoading.hide().then(function(){
+      });
+  },500)
   $scope.settings = {
     enableFriends: true
   };

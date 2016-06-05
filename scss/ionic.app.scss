@@ -16,6 +16,8 @@ $dark:                            #444 !default;
 */
 $white:                             #fff;
 $grey:                              #F1F1F1;
+$calm:                            #4E8DFA !default;
+$loading:						  #6EB094 !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
@@ -25,7 +27,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Get started slider
 .slider {
   height: 100%;
-  color: $white ;  
+  color: $light ;  
   .slider-slide {
   padding-top: 80px;
   background:url(../img/loginbg.jpg) no-repeat;
@@ -35,7 +37,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   font-weight: 300;
   }
   h3{
-  	color:$white;
+  	color:$light;
   }
 }
 
@@ -47,14 +49,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   background:url(../img/loginbg.jpg) no-repeat fixed top center;
   background-size: cover;
     opacity:0.8;
-	color:$white;
+	color:$light;
 	input{
-		color:$white;
+		color:$light;
 		background:none;
 	}
 	h3{
 		padding: 20px 0px;
-		color:$white;
+		color:$light;
 		text-align:center;
 	}
 	a{
@@ -69,10 +71,23 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	color:#fff;
 }
 icon{
-	color:$white;
+	color:$light;
+}
+img{
+	width:100%;
+}
+.loading{
+  background: $loading !important;
+  padding: 4px 20px !important;
 }
 
-
-
+.spinner{
+  stroke: $light !important;
+  fill: $light !important;
+}
+.details-lnk{
+	padding: 30px;
+    font-size: 20px;
+}
 
 
