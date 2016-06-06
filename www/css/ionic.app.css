@@ -9868,3 +9868,10 @@ img {
 .details-lnk {
   padding: 30px;
   font-size: 20px; }
+
+.ion-thumbsdown, .ion-android-star {
+  color: #4E8DFA; }
+
+.icon {
+  cursor: pointer;
+  font-size: 35px; }

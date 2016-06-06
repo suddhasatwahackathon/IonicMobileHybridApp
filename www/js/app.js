@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngCordova'])
 
-.run(function($ionicPlatform,$cordovaSplashscreen, $timeout, $rootScope, $ionicLoading, $ionicHistory) {
+.run(function($ionicPlatform,$cordovaSplashscreen, $timeout, $rootScope, $ionicLoading, $ionicHistory, $cordovaProgress) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -23,18 +23,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
       StatusBar.styleDefault();
     }
     $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
-      $ionicLoading.hide();
+      $cordovaProgress.hide();
       if(toState.name!=='jokes-detail'){
-        $ionicLoading.show({
+/*        $ionicLoading.show({
           templateUrl: 'templates/loading.html',
           noBackdrop: true
-        });        
-      }   
+        });*/      
+        $cordovaProgress.showSimpleWithLabelDetail(true, "Loading", "Please wait") 
+}   
 
     });
     $rootScope.goBack = function(){
       $ionicHistory.goBack();
-      $ionicLoading.hide();
+      $cordovaProgress.hide()
     };
      $ionicPlatform.onHardwareBackButton(function() {
       $rootScope.goBack();

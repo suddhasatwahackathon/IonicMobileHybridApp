@@ -19,42 +19,46 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('loginCtrl', function($scope, $state,$ionicLoading, $timeout) {
+.controller('loginCtrl', function($scope, $state,$ionicLoading, $timeout, $cordovaProgress) {
   $timeout(function(){
-    $ionicLoading.hide().then(function(){
-      });
+  /*  $ionicLoading.hide().then(function(){
+      });*/
+$cordovaProgress.hide()  
   },500)
   $scope.login = function() {
     $state.go('tab.dash')
   };
 })
 
-.controller('registerCtrl', function($scope, $state,$ionicLoading, $timeout) {
+.controller('registerCtrl', function($scope, $state,$ionicLoading, $timeout, $cordovaProgress) {
   $timeout(function(){
-    $ionicLoading.hide().then(function(){
-      });
+    /*$ionicLoading.hide().then(function(){
+      });*/
+  $cordovaProgress.hide()
   },500)
 })
-.controller('forgotCtrl', function($scope, $state,$ionicLoading, $timeout) {
+.controller('forgotCtrl', function($scope, $state,$ionicLoading, $timeout, $cordovaProgress) {
   $timeout(function(){
-    $ionicLoading.hide().then(function(){
-      });
+    /*$ionicLoading.hide().then(function(){
+      });*/
   },500)
 })
 
-.controller('DashCtrl', function($scope,$timeout,$ionicLoading) {
+.controller('DashCtrl', function($scope,$timeout,$ionicLoading, $cordovaProgress) {
   $timeout(function(){
-    $ionicLoading.hide().then(function(){
-      });
+   /* $ionicLoading.hide().then(function(){
+      });*/
+  $cordovaProgress.hide()  
   },500)
 
 })
 
-.controller('ChatsCtrl', function($scope, Chats, $ionicLoading, $timeout) {
+.controller('ChatsCtrl', function($scope, Chats, $ionicLoading, $timeout, $cordovaProgress) {
 
   $timeout(function(){
-    $ionicLoading.hide().then(function(){
-      });
+   /* $ionicLoading.hide().then(function(){
+      });*/
+$cordovaProgress.hide()  
   },500)  
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
@@ -62,57 +66,81 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats,$ionicLoading, $timeout, $ionicActionSheet, $cordovaSocialSharing) {
-   $scope.like=true;
-    $scope.unlike=false;
+.controller('ChatDetailCtrl', function($scope, $stateParams, Chats,$ionicLoading, $timeout, $ionicActionSheet, $cordovaSocialSharing, $cordovaProgress) {
+  $scope.liked=true;
+  $scope.unliked=false;
+  $scope.favorite=true;
+  $scope.unfavorite=false;  
+
   $timeout(function(){
-    $ionicLoading.hide().then(function(){
-      });
+ /*   $ionicLoading.hide().then(function(){
+      });*/
+
+$cordovaProgress.hide()  
   },500)
   $scope.chat = Chats.get($stateParams.chatId);
   $scope.chat.len = Chats.len();
 
   $scope.like = function(){
-    $scope.like=false;
-    $scope.unlike=true;
+    $scope.liked=false;
+    $scope.unliked=true;
   }
   $scope.unlike = function(){
-    $scope.like=true;
-    $scope.unlike=false;
+    $scope.liked=true;
+    $scope.unliked=false;
   }
+  $scope.fav = function(){
+    $scope.favorite=false;
+    $scope.unfavorite=true;
+  }
+  $scope.unfav = function(){
+    $scope.favorite=true;
+    $scope.unfavorite=false;
+  }  
    $scope.shareAnywhere = function(text) {
-    console.log($cordovaSocialSharing);
-      $cordovaSocialSharing.share(text, "This is your subject", "www/imagefile.png", "https://www.slipbeep.com");
+    var link = "http://slipbeep.com",image="";
+    
+
+     $cordovaSocialSharing
+        .share(text, '', '', link) // Share via native share sheet
+        .then(function(result) {
+          // Success!
+        }, function(err) {
+          // An error occured. Show a message to the user
+        });
+
+      $cordovaSocialSharing
+        .shareViaTwitter(text, image, link)
+        .then(function(result) {
+          // Success!
+        }, function(err) {
+          // An error occurred. Show a message to the user
+        });
+
+      $cordovaSocialSharing
+        .shareViaWhatsApp(text, image, link)
+        .then(function(result) {
+          // Success!
+        }, function(err) {
+          // An error occurred. Show a message to the user
+        });
+
+      $cordovaSocialSharing
+        .shareViaFacebook(text, image, link)
+        .then(function(result) {
+          // Success!
+        }, function(err) {
+          // An error occurred. Show a message to the user
+        });      
     }
-    $scope.shareViaTwitter = function(message, image, link) {
-        $cordovaSocialSharing.canShareVia("twitter", message, image, link).then(function(result) {
-            $cordovaSocialSharing.shareViaTwitter(message, image, link);
-        }, function(error) {
-            alert("Cannot share on Twitter");
-        });
-    } 
-    $scope.shareViaFacebook = function(message, image, link) {
-        $cordovaSocialSharing.canShareVia("com.facebook.katana", message, image, link).then(function(result) {
-            $cordovaSocialSharing.shareViaFacebook(message, image, link);
-        }, function(error) {
-            alert("Cannot share on facebook");
-        });
-    }     
-    $scope.shareViaWhatsApp = function(message, image, link) {
-      alert("fb");
-        $cordovaSocialSharing.canShareVia("whatsapp", message, image, link).then(function(result) {
-            alert("fb  inner");
-            $cordovaSocialSharing.shareViaFacebook(message, image, link);
-        }, function(error) {
-            alert("Cannot share on facebook");
-        });
-    } 
+
 })
 
-.controller('AccountCtrl', function($scope, $ionicLoading, $timeout) {
+.controller('AccountCtrl', function($scope, $ionicLoading, $timeout, $cordovaProgress) {
     $timeout(function(){
-    $ionicLoading.hide().then(function(){
-      });
+/*    $ionicLoading.hide().then(function(){
+      });*/
+    $cordovaProgress.hide();
   },500)
   $scope.settings = {
     enableFriends: true
