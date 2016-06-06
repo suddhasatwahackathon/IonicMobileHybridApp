@@ -1,0 +1,28 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="{{chat.name}}">
+  <ion-content class="padding" style="text-align:center">
+  <div class="row">
+    <div class="col col-33" ><a href="#/jokes-detail/{{chat.id-1}}" ng-if="chat.id>0"><i class="icon ion-arrow-left-c"></i></a></div>     
+    <div class="col col-33"><img ng-src="{{chat.face}}" style="width: 64px; height: 64px"></div>
+    <div class="col col-33"><a href="#/jokes-detail/{{chat.id+1}}" ng-if="chat.id<chat.len -1"><i class="icon ion-arrow-right-c"></i></a></div>     
+  </div>
+    <div class="row">
+    <div class="col col-offset-25 col-50">
+      {{chat.fullText}}
+    </div>
+  </div>
+    <div class="row">
+      <div class="col col-25 details-lnk"><i class="icon ion-thumbsup" ng-if="liked" ng-click="like()"></i>
+      <i class="icon ion-thumbsdown" ng-if="unliked" ng-click="unlike()"></i></div>
+      <div class="col col-25 details-lnk" ng-click="shareAnywhere(chat.fullText);"><i class="icon ion-android-share-alt"></i></div>
+      <div class="col col-25 details-lnk"><i class="icon ion-android-star-outline" ng-if="favorite" ng-click="fav()"></i>
+      <i class="icon ion-android-star" ng-if="unfavorite" ng-click="unfav()"></i></div>
+      <div class="col col-25 details-lnk"></div>
+  </div>
+  </ion-content>
+</ion-view>
